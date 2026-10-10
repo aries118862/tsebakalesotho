@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AttractionCard from './components/AttractionCard';
 import AttractionModal from './components/AttractionModal';
 import AnimatedMetric from './components/AnimatedMetric';
@@ -18,6 +18,7 @@ function App() {
 
 function AppContent() {
   const { language, t } = useLanguage();
+  const siteShellRef = useRef(null);
   const [showAllHomePlaces, setShowAllHomePlaces] = useState(false);
   const [enquiryRevealKey, setEnquiryRevealKey] = useState(0);
   const getPage = () => {
@@ -52,6 +53,29 @@ function AppContent() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
+  useEffect(() => {
+    const shell = siteShellRef.current;
+    if (!shell || !('IntersectionObserver' in window)
+      || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return undefined;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+
+    shell.classList.add('site-shell--motion');
+    shell.querySelectorAll('main > section, main .place-card, main .experience-bar__grid > div')
+      .forEach((element) => {
+        if (!element.classList.contains('is-visible')) observer.observe(element);
+      });
+
+    return () => observer.disconnect();
+  }, [category, page, search, showAllHomePlaces, showSavedOnly, visibleAttractions]);
+
   function navigate(path) {
     if (window.location.pathname !== path) {
       window.history.pushState({}, '', path);
@@ -82,7 +106,7 @@ function AppContent() {
   }
 
   return (
-    <div className="site-shell" onClickCapture={handleEnquiryLinkClick}>
+    <div ref={siteShellRef} className="site-shell" onClickCapture={handleEnquiryLinkClick}>
       <SiteHeader page={page} mobileMenuOpen={mobileMenuOpen} onNavigate={navigate} onToggleMenu={() => setMobileMenuOpen((open) => !open)} search={search} onSearchChange={setSearch} />
 
       <main>{page === '/' ? <>
@@ -158,7 +182,7 @@ function AppContent() {
               {categories.map((item) => <button key={item} className={`filter-tab${category === item ? ' filter-tab--active' : ''}`} type="button" onClick={() => setCategory(item)} aria-pressed={category === item}>{t(item)}</button>)}
             </div>
             <div className="browse-controls">
-              <label className="search-box"><Icon name="search" size={18} /><input type="search" aria-label={t('Search destinations by name or location')} placeholder={t('Find a place...')} value={search} onChange={(event) => setSearch(event.target.value)} /><kbd>⌕</kbd></label>
+              <label className="search-box"><Icon name="search" size={18} /><input type="search" aria-label={t('Search destinations by name or location')} placeholder={t('Find a place...')} value={search} onChange={(event) => setSearch(event.target.value)} /></label>
               <button className={`saved-filter${showSavedOnly ? ' saved-filter--active' : ''}`} type="button" onClick={() => setShowSavedOnly((current) => !current)} aria-pressed={showSavedOnly}><Icon name="heart" size={17} /> {t('Saved')} <span>{savedAttractionIds.length}</span></button>
             </div>
           </div>

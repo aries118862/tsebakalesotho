@@ -22,7 +22,7 @@ function SiteHeader({ page, mobileMenuOpen, onNavigate, onToggleMenu, search, on
   }
 
   return (
-    <header className="site-header">
+    <header className={`site-header${mobileMenuOpen ? ' site-header--menu-open' : ''}`}>
       <div className="header-inner">
         <Brand />
         <button className="mobile-menu-toggle" type="button" aria-label={t(mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu')} aria-expanded={mobileMenuOpen} onClick={onToggleMenu}>
@@ -36,15 +36,20 @@ function SiteHeader({ page, mobileMenuOpen, onNavigate, onToggleMenu, search, on
             <Icon name="search" size={17} />
             <input type="search" aria-label={t('Search all destinations')} placeholder={t('Search places')} value={search} onChange={(event) => onSearchChange(event.target.value)} />
           </form>
+        </nav>
+        <div className="header-actions">
+          <a className="header-cta" href="/plan" onClick={(event) => handleNavigation(event, '/plan')}>{t('Plan your trip')}</a>
           <label className="language-picker">
             <span className="visually-hidden">{t('Select language')}</span>
+            <Icon name="globe" size={17} />
+            <span className="language-picker__flag" aria-hidden="true">{language === 'st' ? '🇱🇸' : '🇬🇧'}</span>
             <select aria-label={t('Select language')} value={language} onChange={(event) => setLanguage(event.target.value)}>
               <option value="en">🇬🇧 English</option>
               <option value="st">🇱🇸 Sesotho</option>
             </select>
+            <Icon className="language-picker__chevron" name="down" size={13} />
           </label>
-        </nav>
-        <a className="header-cta" href="/plan" onClick={(event) => handleNavigation(event, '/plan')}>{t('Plan your trip')}</a>
+        </div>
       </div>
     </header>
   );

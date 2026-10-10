@@ -27,7 +27,7 @@ function DestinationsPage({ category, search, setCategory, setSearch, setShowSav
             {categories.map((item) => <button key={item} className={`filter-tab${category === item ? ' filter-tab--active' : ''}`} type="button" onClick={() => setCategory(item)} aria-pressed={category === item}>{t(item)}</button>)}
           </div>
           <div className="browse-controls">
-            <label className="search-box"><Icon name="search" size={18} /><input type="search" aria-label={t('Search destinations by name or location')} placeholder={t('Find a place...')} value={search} onChange={(event) => setSearch(event.target.value)} /><kbd>⌕</kbd></label>
+            <label className="search-box"><Icon name="search" size={18} /><input type="search" aria-label={t('Search destinations by name or location')} placeholder={t('Find a place...')} value={search} onChange={(event) => setSearch(event.target.value)} /></label>
             <button className={`saved-filter${showSavedOnly ? ' saved-filter--active' : ''}`} type="button" onClick={() => setShowSavedOnly((current) => !current)} aria-pressed={showSavedOnly}><Icon name="heart" size={17} /> {t('Saved')} <span>{savedAttractionIds.length}</span></button>
           </div>
         </div>

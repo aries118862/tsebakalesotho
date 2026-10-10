@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;600;700&display=swap');
 
 :root {
   --flag-blue: #00209f;
@@ -6,18 +6,23 @@
   --flag-black: #000000;
   --flag-white: #ffffff;
   --flag-light-green: #b9e8ce;
-  --ink: #243a32;
-  --green: #007a3d;
-  --green-dark: #005f32;
-  --green-deep: #002b70;
-  --muted: #81857c;
-  --cream: #faf8f3;
-  --paper: #fffefa;
-  --line: #e9e6dc;
-  --gold: #d4a94f;
-  --gold-light: #eed9a5;
-  --serif: 'DM Serif Display', Georgia, serif;
-  --sans: 'DM Sans', 'Segoe UI', sans-serif;
+  --ink: #263343;
+  --green: var(--flag-green);
+  --charcoal-dark: #15191e;
+  --charcoal: #252a30;
+  --action-blue: #3157d5;
+  --action-blue-hover: #2446bd;
+  --search-dim: #dfe3e5;
+  --muted: #66717d;
+  --cream: #b9c1bd;
+  --paper: #ffffff;
+  --line: #cbd3cf;
+  --surface-soft: #eef2ef;
+  --surface-raised: #aeb8b3;
+  --success-soft: #e8f2eb;
+  --danger: #a6382d;
+  --danger-soft: #fff4f2;
+  --sans: 'DM Sans', 'Roboto', 'Segoe UI', sans-serif;
 }
 
 * {
@@ -36,6 +41,10 @@ body {
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+em {
+  font-style: normal;
 }
 
 body.modal-open {
@@ -64,7 +73,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid rgba(0, 84, 159, .8);
+  outline: 3px solid rgba(0, 122, 61, .72);
   outline-offset: 3px;
 }
 
