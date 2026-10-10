@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+
+:root {
+  --flag-blue: #00209f;
+  --flag-green: #009543;
+  --flag-black: #000000;
+  --flag-white: #ffffff;
+  --flag-light-green: #b9e8ce;
+  --ink: #243a32;
+  --green: #007a3d;
+  --green-dark: #005f32;
+  --green-deep: #002b70;
+  --muted: #81857c;
+  --cream: #faf8f3;
+  --paper: #fffefa;
+  --line: #e9e6dc;
+  --gold: #d4a94f;
+  --gold-light: #eed9a5;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 82px;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--cream);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(0, 84, 159, .8);
+  outline-offset: 3px;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+::selection {
+  color: white;
+  background: var(--green);
+}
