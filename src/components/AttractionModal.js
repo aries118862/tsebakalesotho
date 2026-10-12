@@ -22,6 +22,9 @@ function AttractionModal({ attraction, onClose, onEnquire }) {
 
   if (!attraction) return null;
   const place = localizeAttraction(attraction, language);
+  const mapSearch = new URL('https://www.google.com/maps/search/');
+  mapSearch.searchParams.set('api', '1');
+  mapSearch.searchParams.set('query', `${place.name}, ${place.location}, Lesotho`);
 
   return (
     <div className="modal-backdrop" role="presentation" onMouseDown={(event) => {
@@ -42,9 +45,14 @@ function AttractionModal({ attraction, onClose, onEnquire }) {
           <ul className="activity-list">
             {attraction.activities.map((activity) => <li key={activity}><Icon name="check" size={16} />{t(activity)}</li>)}
           </ul>
-          <button className="button button--green detail-modal__cta" type="button" onClick={() => onEnquire(attraction.name)}>
-            {t('Plan a visit')} <Icon name="arrow" size={17} />
-          </button>
+          <div className="detail-modal__actions">
+            <button className="button button--green detail-modal__cta" type="button" onClick={() => onEnquire(attraction.name)}>
+              {t('Plan a visit')} <Icon name="arrow" size={17} />
+            </button>
+            <a className="button detail-modal__map-link" href={mapSearch.toString()} target="_blank" rel="noopener noreferrer">
+              {t('View on map')} <Icon name="pin" size={17} />
+            </a>
+          </div>
           <span className="modal-note">{t('Costs are estimates. Please confirm locally before you travel.')}</span>
         </div>
       </section>

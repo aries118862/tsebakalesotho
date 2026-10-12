@@ -5,6 +5,7 @@ beforeEach(() => {
   window.history.replaceState({}, '', '/');
   window.localStorage.clear();
   window.scrollTo = jest.fn();
+  Element.prototype.scrollIntoView = jest.fn();
 });
 
 test('home page initially shows four attractions', () => {
@@ -60,6 +61,10 @@ test('opens attraction details and selects the destination in the enquiry form',
   fireEvent.click(screen.getByRole('button', { name: 'View details for Sani Pass' }));
   const dialog = screen.getByRole('dialog');
   expect(within(dialog).getByText('Visit the highest pub')).toBeInTheDocument();
+  const mapLink = within(dialog).getByRole('link', { name: /view on map/i });
+  expect(mapLink).toHaveAttribute('target', '_blank');
+  expect(mapLink).toHaveAttribute('rel', 'noopener noreferrer');
+  expect(new URL(mapLink.href).searchParams.get('query')).toBe('Sani Pass, Mokhotlong district, Lesotho');
   fireEvent.click(within(dialog).getByRole('button', { name: /plan a visit/i }));
 
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
@@ -83,7 +88,55 @@ test('validates the enquiry and displays a confirmation after a valid submission
   fireEvent.change(screen.getByLabelText(/A little about your trip/), { target: { value: 'We are excited to explore the mountains.' } });
   fireEvent.click(screen.getByRole('button', { name: /send your enquiry/i }));
 
-  expect(screen.getByRole('status')).toHaveTextContent('Thanks, Mpho Visitor!');
+  expect(within(document.querySelector('.enquiry-form')).getByRole('status')).toHaveTextContent('Thanks, Mpho Visitor!');
+});
+
+test('shows current weather for each destination using the secure weather endpoint', async () => {
+  const previousFetch = global.fetch;
+  const fetchMock = jest.fn().mockResolvedValue({
+    ok: true,
+    text: async () => JSON.stringify({
+      temperature: 18,
+      feelsLike: 17,
+      humidity: 42,
+      windSpeed: 9,
+      description: 'Partly cloudy',
+      observationTime: '03:15 PM',
+    }),
+  });
+  global.fetch = fetchMock;
+
+  try {
+    render(<App />);
+
+    expect(await screen.findAllByText('18°C')).toHaveLength(4);
+    expect(screen.getAllByText('Partly cloudy')).toHaveLength(4);
+    expect(fetchMock).toHaveBeenCalledWith(
+      '/api/weather?place=sani-pass',
+      expect.objectContaining({ signal: expect.any(AbortSignal) }),
+    );
+  } finally {
+    if (previousFetch) global.fetch = previousFetch;
+    else delete global.fetch;
+  }
+});
+
+test('shows a helpful message when the dev server returns a plain-text proxy error', async () => {
+  const previousFetch = global.fetch;
+  global.fetch = jest.fn().mockResolvedValue({
+    ok: false,
+    text: async () => 'Proxy error: ECONNREFUSED',
+  });
+
+  try {
+    render(<App />);
+    expect(await screen.findAllByText(
+      'Weather service is unavailable. Restart the app with npm start and check the server output.',
+    )).toHaveLength(4);
+  } finally {
+    if (previousFetch) global.fetch = previousFetch;
+    else delete global.fetch;
+  }
 });
 
 test('reveals the enquiry form with an unwrapping animation when its link is clicked', () => {

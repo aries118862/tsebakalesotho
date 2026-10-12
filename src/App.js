@@ -125,7 +125,7 @@ function AppContent() {
 
         <section className="intro-section section-wrap" id="about">
           <div className="intro-section__top">
-            <span className="eyebrow"><span className="eyebrow__dash" /> {t('A SMALL COUNTRY WITH A BIG SOUL')}</span>
+            <span className="eyebrow">{t('A SMALL COUNTRY WITH A BIG SOUL')}</span>
             <h2>{t('Some places you visit.')}<br /><em>{t('Some get under your skin.')}</em></h2>
           </div>
           <div className="intro-section__body">
@@ -146,7 +146,7 @@ function AppContent() {
         <section className="featured-section" id="experiences">
           <div className="section-wrap">
             <div className="section-heading">
-              <div><span className="eyebrow"><span className="eyebrow__dash" /> {t('A LITTLE OF EVERYTHING')}</span><h2>{t('Take the')} <em>{t('scenic route.')}</em></h2></div>
+              <div><span className="eyebrow">{t('A LITTLE OF EVERYTHING')}</span><h2>{t('Take the')} <em>{t('scenic route.')}</em></h2></div>
               <p>{t('Pick a path. Follow a feeling.')}<br />{t('There’s no wrong way to get lost here.')}</p>
             </div>
             <div className="feature-layout">
@@ -174,7 +174,7 @@ function AppContent() {
 
         <section className="destinations-section section-wrap" id="destinations">
           <div className="section-heading destinations-heading">
-            <div><span className="eyebrow"><span className="eyebrow__dash" /> {t('THE GOOD PLACES')}</span><h2>{t('Find your')} <em>{t('somewhere.')}</em></h2></div>
+            <div><span className="eyebrow">{t('THE GOOD PLACES')}</span><h2>{t('Find your')} <em>{t('somewhere.')}</em></h2></div>
             <p>{t('Big views, little villages, stories carved')}<br className="desktop-break" /> {t('in stone. It’s all waiting up here.')}</p>
           </div>
           <div className="browse-toolbar">
@@ -209,7 +209,7 @@ function AppContent() {
         <section className="culture-strip">
           <div className="culture-strip__image"><img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1400&q=85" alt="African highlands beneath a wide open sky" loading="lazy" /></div>
           <div className="culture-strip__content">
-            <span className="eyebrow eyebrow--light"><span className="eyebrow__dash" /> {t('MORE THAN A MOUNTAIN')}</span>
+            <span className="eyebrow eyebrow--light">{t('MORE THAN A MOUNTAIN')}</span>
             <h2>{t('Come for the view.')}<br /><em>{t('Stay for the welcome.')}</em></h2>
             <p>{t('Here, a journey is measured in stories shared, a warm blanket after sunset, and one more cup of tea. The Basotho way isn’t just something to see. It’s something you feel.')}</p>
             <a className="culture-strip__link" href="#enquire">{t('Meet the Mountain Kingdom')} <Icon name="arrow" size={16} /></a>
@@ -218,7 +218,7 @@ function AppContent() {
         </section>
 
         <section className="experience-bar section-wrap">
-          <span className="eyebrow"><span className="eyebrow__dash" /> {t('MAKE IT YOURS')}</span>
+          <span className="eyebrow">{t('MAKE IT YOURS')}</span>
           <div className="experience-bar__grid">
             <div><span className="experience-icon"><Icon name="mountain" /></span><span><strong>{t('High-altitude adventures')}</strong><small>{t('More mountain, less ordinary.')}</small></span></div>
             <div><span className="experience-icon"><Icon name="leaf" /></span><span><strong>{t('Wide-open nature')}</strong><small>{t('Find your own kind of quiet.')}</small></span></div>

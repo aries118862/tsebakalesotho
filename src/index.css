@@ -1,28 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;600;700&display=swap');
 
 :root {
-  --flag-blue: #00209f;
-  --flag-green: #009543;
-  --flag-black: #000000;
+  --flag-blue: #294c73;
+  --flag-green: #176b45;
+  --flag-black: #101916;
   --flag-white: #ffffff;
-  --flag-light-green: #b9e8ce;
-  --ink: #263343;
+  --flag-light-green: #c8e8d5;
+  --ink: #1b2922;
   --green: var(--flag-green);
-  --charcoal-dark: #15191e;
-  --charcoal: #252a30;
-  --action-blue: #3157d5;
-  --action-blue-hover: #2446bd;
-  --search-dim: #dfe3e5;
-  --muted: #66717d;
-  --cream: #b9c1bd;
+  --charcoal-dark: #10231c;
+  --charcoal: #18382d;
+  --action-blue: #294c73;
+  --action-blue-hover: #1e3c5d;
+  --search-dim: #f1f4f1;
+  --muted: #52645a;
+  --cream: #f6f7f4;
   --paper: #ffffff;
-  --line: #cbd3cf;
-  --surface-soft: #eef2ef;
-  --surface-raised: #aeb8b3;
-  --success-soft: #e8f2eb;
+  --line: #d9e2da;
+  --surface-soft: #edf3ee;
+  --surface-raised: #f0f3ef;
+  --success-soft: #e8f3eb;
   --danger: #a6382d;
   --danger-soft: #fff4f2;
-  --sans: 'DM Sans', 'Roboto', 'Segoe UI', sans-serif;
+  --sans: 'Roboto', 'DM Sans', 'Segoe UI', sans-serif;
 }
 
 * {
@@ -39,6 +39,8 @@ body {
   color: var(--ink);
   background: var(--cream);
   font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -73,7 +75,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid rgba(0, 122, 61, .72);
+  outline: 3px solid var(--flag-green);
   outline-offset: 3px;
 }
 

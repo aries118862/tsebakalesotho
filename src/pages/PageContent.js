@@ -9,7 +9,7 @@ function PageTitle({ kicker, title, description }) {
   const { t } = useLanguage();
   return (
     <section className="page-title section-wrap">
-      <span className="eyebrow"><span className="eyebrow__dash" /> {t(kicker)}</span>
+      <span className="eyebrow">{t(kicker)}</span>
       <h1>{title}</h1>
       <p>{t(description)}</p>
     </section>
@@ -61,7 +61,7 @@ function ExperiencesPage({ openAttraction, savedAttractionIds, toggleSavedAttrac
         </div>
       </section>
       <section className="experience-bar section-wrap">
-        <span className="eyebrow"><span className="eyebrow__dash" /> {t('A DIFFERENT KIND OF ADVENTURE')}</span>
+        <span className="eyebrow">{t('A DIFFERENT KIND OF ADVENTURE')}</span>
         <div className="experience-bar__grid">
           <div><span className="experience-icon"><Icon name="mountain" /></span><span><strong>{t('High-altitude adventures')}</strong><small>{t('More mountain, less ordinary.')}</small></span></div>
           <div><span className="experience-icon"><Icon name="leaf" /></span><span><strong>{t('Wide-open nature')}</strong><small>{t('Find your own kind of quiet.')}</small></span></div>
@@ -80,7 +80,7 @@ function AboutPage() {
       <PageTitle kicker="A SMALL COUNTRY WITH A BIG SOUL" title={<>{t('Meet the Mountain')} <em>{t('Kingdom.')}</em></>} description="Lesotho is a kingdom in the clouds, wrapped entirely in South Africa and rising high into the sky." />
       <section className="intro-section section-wrap page-section">
         <div className="intro-section__top">
-          <span className="eyebrow"><span className="eyebrow__dash" /> {t('ROOTED IN THE HIGHLANDS')}</span>
+          <span className="eyebrow">{t('ROOTED IN THE HIGHLANDS')}</span>
           <h2>{t('One country.')}<br /><em>{t('A whole new altitude.')}</em></h2>
         </div>
         <div className="intro-section__body">
@@ -97,7 +97,7 @@ function AboutPage() {
       <section className="culture-strip">
         <div className="culture-strip__image"><img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1400&q=85" alt="African highlands beneath a wide open sky" loading="lazy" /></div>
         <div className="culture-strip__content">
-          <span className="eyebrow eyebrow--light"><span className="eyebrow__dash" /> {t('MORE THAN A MOUNTAIN')}</span>
+          <span className="eyebrow eyebrow--light">{t('MORE THAN A MOUNTAIN')}</span>
           <h2>{t('Come for the view.')}<br /><em>{t('Stay for the welcome.')}</em></h2>
           <p>{t('Here, a journey is measured in stories shared, a warm blanket after sunset, and one more cup of tea. The Basotho way isn’t just something to see. It’s something you feel.')}</p>
         </div>

@@ -1,4 +1,5 @@
 import Icon from './Icon';
+import WeatherCard from './WeatherCard';
 import { localizeAttraction, useLanguage } from '../context/LanguageContext';
 
 function AttractionCard({ attraction, onSelect, isSaved, onToggleSaved }) {
@@ -24,6 +25,7 @@ function AttractionCard({ attraction, onSelect, isSaved, onToggleSaved }) {
         <span className="place-card__location"><Icon name="pin" size={14} />{place.location}</span>
         <h3>{place.name}</h3>
         <p>{place.description}</p>
+        <WeatherCard placeId={attraction.id} placeName={place.name} />
         <div className="place-card__bottom">
           <span className="place-card__cost"><small>{t('ENTRY / VISIT')}</small>{attraction.cost}</span>
           <button className="text-link" type="button" onClick={() => onSelect(attraction)} aria-label={`${t('View details for')} ${place.name}`}>
