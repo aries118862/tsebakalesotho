@@ -2,6 +2,7 @@
   "name": "tsebakalesotho",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://127.0.0.1:3001",
   "dependencies": {
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^6.9.1",
@@ -13,9 +14,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node start.js",
+    "weather-server": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:weather": "node --test server.test.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
